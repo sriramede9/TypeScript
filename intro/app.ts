@@ -1,3 +1,5 @@
+import { Person3 } from "./module1";
+
 var Person = { firstname: "Sri", lastname: "ram" };
 //in javascript we can add another unrelated property to the person person.fly="flying";it will add to the object.loosely coupled.
 //we stuck in java script as browser are build to run js.
@@ -239,38 +241,8 @@ echo<string>("test");
 echo<Array<number>>([1, 2, 3]);
 echo<Array<string>>(["1", "2"]);
 
-class Person3 {
-  constructor(private fname: string, private lname: string) {}
+//I have imported Person3 fromm module1.ts can I use it's child?
 
-  getDetails() {
-    return `${this.fname} ${this.lname}`;
-  }
-}
+// let managerf: Manager = new manager("a", "b");cannot
 
-class Manager extends Person3 {
-  getDetails() {
-    return ` Manager: ${super.getDetails()}`;
-  }
-}
-
-//now we have few cases to deeply dug through this case
-
-//sol 1
-
-function echoperson(e: Person3): Person3 {
-  return e;
-}
-
-echoperson(new Person3("will", "smith"));
-
-//but the return type is person
-
-//if we want the childern of type person then we can use generics
-
-function echopersonchildren<T extends Person3>(e: T): T {
-  return e;
-}
-
-//now echo perfectly accepts children of Person3 and retur same.
-
-let bw: Manager = echopersonchildren(new Manager("Bruce", "wills"));
+let person3: Person3 = new Person3("a", "b");
